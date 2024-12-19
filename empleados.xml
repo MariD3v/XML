@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<empleados>
+    <empleado>
+        <nombre>Ana</nombre>
+        <apellido>Garcia</apellido>
+        <edad>30</edad>
+        <departamento>Ventas</departamento>
+        <cargo>Ejecutivo</cargo>
+    </empleado>
+    <empleado>
+        <nombre>Luis</nombre>
+        <apellido>Rodriguez</apellido>
+        <edad>45</edad>
+        <departamento>Finanzas</departamento>
+        <cargo>Analista</cargo>
+    </empleado>
+    <empleado>
+        <nombre>Maria</nombre>
+        <apellido>Lopez</apellido>
+        <edad>28</edad>
+        <departamento>Marketing</departamento>
+        <cargo>Redes sociales</cargo>
+    </empleado>
+</empleados>

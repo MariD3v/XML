@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Realiza el DTD y el XMl asociado:
+- Por cada alumno se almacenará el nombre, apellidos, domicilio y teléfono (teniendo e cuenta que puede tener más de uno).
+- Se debe indicar si el alumno está o no becado.
+- Incluir el atributo "cod-alumno" que identifique a los alumnos de forma única.
+- Se desea conocer si el alumno tiene familiares estudiando en el centro, esto se referenciará con el código de alumno del familiar.
+- Cada alumno puede tener uno o varios números de teléfonos y en cada número almacenado, se guardará mediante un atributo,
+si el alumno tiene permitidas las comunicaciones de notas a través del teléfono. Por defecto este valor será "no".
+- Se permite añadir opcionalmente observaciones sobre los alumnos. El contenido puede ser texto u otro elemento.
+- Se almacenarán las notas del último curso mediante los elementos "evaluación" y "calificación", que aparecerán en ese orden
+y varias veces. -->
+
+<!DOCTYPE alumnos [
+    <!ELEMENT alumnos (alumno+)>
+    <!ELEMENT alumno (nombre, apellidos,domicilio,telefono+,observacion?,nota?)>
+        <!ATTLIST alumno cod-alumno ID>
+        <!ATTLIST alumno cod-familiar IDREFS>
+        <!ATTLIST alumno becado (si|no)>
+    <!ELEMENT nombre (#PCDATA)>
+    <!ELEMENT apellidos (#PCDATA)>
+    <!ELEMENT domicilio (#PCDATA)>
+    <!ELEMENT telefono (#PCDATA)>
+        <!ATTLIST telefono permitido (si|no) "no">
+    <!ELEMENT becado (#PCDATA)>
+    <!ELEMENT observacion ANY>
+    <!ELEMENT nota (evaluación,calificación)+>
+    <!ELEMENT evaluación (#PCDATA)>
+    <!ELEMENT calificación (#PCDATA)>
+]>
+
+<alumnos>
+    <alumno cod-alumno="1" cod_familiar="2" becado="si">
+      <nombre>Mari</nombre>
+      <apellidos>Salar Garcia</apellidos>
+      <domicilio>Fortuna</domicilio>
+      <telefono permitido="si">654654654</telefono>
+      <telefono>654633354</telefono>
+      <observacion>Muy buena alumna</observacion>
+      <nota>
+        <evaluación>Primera</evaluación>
+        <calificación>10</calificación>
+      </nota>
+    </alumno>
+        <alumno cod-alumno="2" cod_familiar="1" becado="no">
+      <nombre>Miki</nombre>
+      <apellidos>Alonso</apellidos>
+      <domicilio>Fortuna</domicilio>
+      <telefono permitido="si">654654677</telefono>
+      <observacion>Muy buen alumno</observacion>
+      <nota>
+        <evaluación>Primera</evaluación>
+        <calificación>9</calificación>
+        <evaluación>Segunda</evaluación>
+        <calificación>2</calificación>
+      </nota>
+    </alumno>
+</alumnos>

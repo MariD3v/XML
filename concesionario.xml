@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Proporcionar una DTD que permita validar los documentos de un concesionario de vehículos según los requisitos abajo indicados.
+
+Se desea modelar en XML la información relativa a distintos concesionarios de vehículos de una marca.
+La lista de concesionarios debe tener al menos uno, no puede estar vacía.
+Deberá poder recoger la información de contacto de cada concesionario (nombre, dirección, localidad y uno o más teléfonos) así como la lista de los vehículos que tiene a la venta.
+La lista de vehículos puede estar vacía, o contener 1 o varios vehículos diferentes. Cada vehículo se identifica mediante su matrícula (será obligatoria y no se puede repetir) y pueden ser del tipo "turismo" o "furgoneta", siendo el valor por defecto "turismo".
+Del vehículo se recoge el modelo, cilindrada, tipo de combustible (sólo puede ser Gasolina o Diesel), color, y puede contener un elemento "asegurado" que es un elemento vacío.-->
+
+<!DOCTYPE concesionarios [
+<!ELEMENT concesionarios (concesionario +)>
+<!ELEMENT concesionario (datos_contacto, vehiculos)>
+    <!ELEMENT datos_contacto (nombre,dirección,localidad,telefono+)>
+        <!ELEMENT nombre (#PCDATA)>
+        <!ELEMENT dirección (#PCDATA)>
+        <!ELEMENT localidad (#PCDATA)>
+        <!ELEMENT telefono (#PCDATA)>
+    <!ELEMENT vehiculos (vehiculo*)>
+        <!ELEMENT vehiculo (modelo, cilindrada,color,asegurado?)>
+            <!ATTLIST vehiculo matricula ID #REQUIRED>
+            <!ATTLIST vehiculo tipo (turismo | furgoneta) "turismo">
+            <!ATTLIST vehiculo gasolina (gasolina | gasoi)>
+            <!ELEMENT modelo (#PCDATA)>
+            <!ELEMENT cilindrada (#PCDATA)>
+            <!ELEMENT color (#PCDATA)>
+            <!ELEMENT asegurado (EMPTY)>
+]>
+
+<concesionarios>
+    <concesionario>
+        <datos_contacto>
+            <nombre>Mari</nombre>
+            <dirección>Fortuna</dirección>
+            <localidad>Murcia</localidad>
+            <telefono>678678678</telefono>
+            <telefono>678678654</telefono>
+        </datos_contacto>
+        <vehiculos>
+            <vehiculo matricula="1234ASD" tipo="furgoneta" combustible="gasolina">
+                <modelo>KIA</modelo>
+                <cilindrada>125</cilindrada>
+                <color>Rosa</color>
+                <asegurado/>
+            </vehiculo>
+                <vehiculo matricula="1564ASD" combustible="gasolina">
+                <modelo>LAMBO</modelo>
+                <cilindrada>400</cilindrada>
+                <color>Rosa</color>
+                <asegurado/>
+            </vehiculo>
+        </vehiculos>
+    </concesionario>
+</concesionarios>

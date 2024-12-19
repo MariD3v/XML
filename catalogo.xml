@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<productos>
+    <producto>
+        <nombre>Portatil</nombre>
+        <descripcion>Samsung 10px flex</descripcion>
+        <precio>200</precio>
+        <caracteristicas>
+            <caracteristica nombre="memoria" valor="16G"/>
+            <caracteristica nombre="disco" valor="500G"/>
+        </caracteristicas>
+    </producto>
+    <producto>
+        <nombre>Portatil</nombre>
+        <descripcion>Xiaomi 120px flex</descripcion>
+        <precio>689</precio>
+        <caracteristicas>
+            <caracteristica nombre="memoria" valor="12G"/>
+            <caracteristica nombre="disco" valor="500G"/>
+        </caracteristicas>
+    </producto>
+</productos>

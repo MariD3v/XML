@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE informacion [
+  <!ELEMENT informacion (software+,modulo+)>
+    <!ATTLIST informacion curso #FIXED "1">
+    <!ELEMENT software (nome,dataPubli?)>
+    <!ATTLIST software codigo ID #REQUIRED>
+    <!ATTLIST software tipo (gratuito | comercial) #IMPLIED>
+    <!ELEMENT nome (#PCDATA)>
+    <!ELEMENT dataPubli EMPTY>
+    <!ATTLIST dataPubli año CDATA "2015">
+    <!ATTLIST dataPubli mes CDATA #REQUIRED>
+    <!ELEMENT modulo (titulo)>
+    <!ATTLIST modulo usa IDREFS #IMPLIED>
+    <!ELEMENT titulo (#PCDATA)>
+]>
+
+<informacion>
+    <software codigo="N1" tipo ="gratuito">
+      <nome>Notepad++</nome>
+      <dataPubli año="2015" mes="marzo"/>
+    </software>
+    <software codigo="X1">
+      <nome>XML Copy Editor</nome>
+      <dataPubli año="2012" mes="mayo"/>
+    </software>
+    <software codigo="P1">
+      <nome>PacketTracer</nome>
+      <dataPubli año="2016" mes="enero"/>
+    </software>
+    <software codigo="M1" tipo="comercial">
+      <nome>Microsoft Word</nome>
+    </software>
+    <modulo usa="N1 X1">
+      <titulo>Lenguaje de Marcas</titulo>
+    </modulo>
+    <modulo usa="P1">
+      <titulo>Redes</titulo>
+    </modulo>
+    <modulo>
+      <titulo>FOL</titulo>
+    </modulo>
+</informacion>
