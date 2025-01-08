@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <alumnos xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:/E:/Clase/Lenguaje%20de%20marcas/XML/XSD/alumno.xsd">
-  <alumno>
-    <nombre dni="12312312A">Mari</nombre>
+  <alumno dni="12312312A">
+    <nombre>Mari</nombre>
     <edad>24</edad>
     <nota eval="1">10</nota>
     <nota eval="2">9</nota>
-    <telefono>567567567</telefono>
+    <telefono prefijo="+34">567567567</telefono>
   </alumno>
-  <alumno>
-    <nombre dni="12312312B">MariChuli</nombre>
+  <alumno dni="12312312B">
+    <nombre>MariChuli</nombre>
     <edad>24</edad>
     <nota eval="2">10</nota>
     <nota eval="1">9</nota>
