@@ -2,7 +2,6 @@
 
 <!DOCTYPE informacion [
   <!ELEMENT informacion (software+,modulo+)>
-    <!ATTLIST informacion curso #FIXED "1">
     <!ELEMENT software (nome,dataPubli?)>
     <!ATTLIST software codigo ID #REQUIRED>
     <!ATTLIST software tipo (gratuito | comercial) #IMPLIED>

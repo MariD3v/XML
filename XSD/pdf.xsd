@@ -1,0 +1,32 @@
+1.
+<xs:element name="ciudad" type="xs:string"/>
+<xs:element name="fecha-de-nacimiento" type="xs:date"/>
+<xs:element name="hora" type="xs:time"/>
+<xs:element name="nota" type="xs:decimal"/>
+<xs:element name="apto" type="xs:boolean"/>
+
+2.
+<xs:element name="puertaCerrada" default="falso" type="xs:boolean"/>
+<xs:element name="ventanaAbierta" fixed="verdadero" type="xs:boolean"/>
+
+3.
+<xs:element name="edad">
+    <xs:simpleType>
+    <xs:restriction base="xs:integer">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="130"/>
+    </xs:restriction>
+    </xs:simpleType>
+</xs:element>
+
+4.
+<xs:element name="vehiculo">
+    <xs:simpleType>
+    <xs:restriction base="xs:string">
+        <xs:enumeration value="barco"/>
+        <xs:enumeration value="bicicleta"/>
+        <xs:enumeration value="coche"/>
+        <xs:enumeration value="tren"/>
+    </xs:restriction>
+    </xs:simpleType>
+</xs:element>

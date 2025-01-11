@@ -10,7 +10,7 @@
           <xs:element name="apellido" type="xs:string"/>
           <xs:element name="fechaNacimiento" type="xs:date"/>
           <xs:element name="salario" type="xs:float"/>
-          <xs:element name="activo" type="xs:bool"/>
+          <xs:element name="activo" type="xs:boolean"/>
           <xs:element name="horaEntrada" type="xs:time"/>
         </xs:sequence>
         <xs:attribute name="id" type="xs:integer"/>

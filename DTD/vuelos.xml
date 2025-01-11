@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+
 <!--Escribir un documento XML con una DTD interna que represente la siguiente información ficticia:
 PANEL DE VUELOS DE SALIDA DEL AEROPUERTO JFK – 20/12/2013
 Código	Diario	Origen	Destino	Hora salida	Hora llegada	Estado
@@ -13,8 +13,8 @@ Los posibles estados de un vuelo son C (Cancelado), E (En hora), R (Retr
 En la DTD debe indicarse que al menos tiene que aparecer un vuelo y, para cada uno de ellos, se tiene que guardar la información en el mismo orden en el que aparece en el panel.
 Para indicar si un vuelo es diario, se debe utilizar un elemento vacío que, respecto a cada vuelo, podrá aparecer (en el caso de sí ser diario) o no aparecer (en el caso contrario).-->
 
-
-<!DOCTYPE vuelos [
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE europuerto [
 <!ELEMENT aeropuerto (nombre, vuelos, fecha)>
     <!ELEMENT nombre (#PCDATA)>
     <!ELEMENT vuelos (vuelo+)>
@@ -28,7 +28,6 @@ Para indicar si un vuelo es diario, se debe utilizar un elemento vacío que, re
             <!ELEMENT llegada (#PCDATA)>
     <!ELEMENT fecha (#PCDATA)>
 ]>
-
 
 <aeropuerto>
     <nombre>JFK</nombre>
