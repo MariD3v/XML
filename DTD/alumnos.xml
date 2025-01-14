@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE alumnos [
+    <!ELEMENT alumnos (alumno+)>
+    <!ELEMENT alumno (nombre,apellidos,domicilio,telefono+)>
+    <!ELEMENT nombre (#PCDATA)>
+    <!ELEMENT apellidos (#PCDATA)>
+    <!ELEMENT domicilio (#PCDATA)>
+    <!ELEMENT telefono (#PCDATA)>
+]>
+
+<alumnos>
+    <alumno>
+        <nombre>mari</nombre>
+        <apellidos>salar</apellidos>
+        <domicilio>Calle mari</domicilio>
+        <telefono>654365435</telefono>
+        <telefono>654365434</telefono>
+    </alumno>
+    <alumno>
+        <nombre>miki</nombre>
+        <apellidos>alonso</apellidos>
+        <domicilio>Calle miki</domicilio>
+        <telefono>654365436</telefono>
+        <telefono>654365437</telefono>
+    </alumno>
+</alumnos>
+
+2.
+a) <!ELEMENT alumno (nombre,apellidos,domicilio,telefono+, equipo?)>
+b) <!ELEMENT alumno (nombre,apellidos,domicilio,telefono+, aficion*)>
+c) <!ELEMENT alumno (nombre,apellidos,domicilio,telefono+, origen)>
+   <!ELEMENT origen (provincia|pais)>
+d) <!ELEMENT alumno (nombre,apellidos,domicilio,telefono+, comentario?)>
+   <!ELEMENT comentario (ANY)>
+e) <!ELEMENT alumno (nombre,apellidos,domicilio,telefono+, notas)>
+   <!ELEMENT notas (#PCDATA | evaluación | calificación)> MAL
+
+3.
+a) <!ATTLIST alumno num_alumno ID #REQUIRED>
+b) <!ATTLIST alumno altura CDATA #IMPLIED>
+c) <!ATTLIST alumno sexo (hombre | mujer) #IMPLIED>
+d) <!ATTLIST telefono dueño (propio | padre | madre | tutor) #REQUIRED>
