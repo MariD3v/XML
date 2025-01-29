@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<biblioteca>
+  <libro>
+    <titulo idioma="es">La vida está en otra parte</titulo>
+    <autor>Milan Kundera</autor>
+    <fechaPublicacion año="1973"/>
+  </libro>
+  <libro>
+    <titulo idioma="es">Pantaleón y las visitadoras</titulo>
+    <autor fechaNacimiento="28/03/1936">Mario Vargas Llosa</autor>
+    <fechaPublicacion año="1973"/>
+  </libro>
+  <libro>
+    <titulo idioma="es">Conversación en la catedral</titulo>
+    <autor fechaNacimiento="28/03/1936">Mario Vargas Llosa</autor>
+    <fechaPublicacion año="1969"/>
+  </libro>
+</biblioteca>
+
+
+a)Obtener todos los títulos de los libros de la biblioteca.
+/biblioteca/libro/titulo/string()
+b)Obtener todos los autores sin importar donde se encuentren.
+/biblioteca/libro/autor/string()
+c)Obtener todos los atributos de fecha de nacimiento de los autores de los libros de la biblioteca.
+/biblioteca/libro/autor/@fechaNacimiento
+d)Obtener todos los autores con fecha de nacimiento.
+/biblioteca/libro/autor[@fechaNacimiento!=null]/string()
+
+a)Obtener el título del segundo libro.
+/biblioteca/libro[2]/titulo/string()
+b)Obtener el autor del ultimo libro.
+/biblioteca/libro[last()]/autor/string()
+c)Obtener todos los títulos con el atributo idioma.
+/biblioteca/libro/titulo[@idioma!=null]
+d)Obtener todos los autores con fecha de nacimiento igual a 1936-03-28.
+/biblioteca/libro/autor[@fechaNacimiento="28/03/1936"]/string()
+e)Obtener todos los elementos de libro con fecha de publicación anterior a 1975.
+/biblioteca/libro[fechaPublicacion/@año<1975]
+f)Obtener todos los autores que hayan publicado un libro en español.
+/biblioteca/libro[titulo/@idioma="es"]/autor/string()
+
+a)Seleccionar todos los elementos de la biblioteca.
+/biblioteca
+b)Seleccionar todos los elementos con al menos un atributo.
+
+c)Seleccionar todos los autores y títulos.
+
+d)Seleccionar todos los títulos en español y en todos los títulos en inglés.
+
+e)Seleccionar todos los libros publicados en inglés en el año 1969.
+
+f)Seleccione todos los títulos de los libros publicados en 1973.
+
+g)Obtener el texto de todos los autores (sin marcas) que publiquen después de 1960 en inglés.
+
+a)Obtener el año de publicación de un libro escrito en español.
+
+b)Obtener todos los títulos de libros publicados en el mismo año que el libro con titlte “La vida está en otra parte”
+
+c)Obtener todos los títulos de libros con el mismo autor que el libro “Conversación en la catedral”
+
