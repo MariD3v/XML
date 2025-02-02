@@ -41,22 +41,23 @@ f)Obtener todos los autores que hayan publicado un libro en español.
 /biblioteca/libro[titulo/@idioma="es"]/autor/string()
 
 a)Seleccionar todos los elementos de la biblioteca.
-/biblioteca
+/biblioteca/*
 b)Seleccionar todos los elementos con al menos un atributo.
-
+//*[@*]
 c)Seleccionar todos los autores y títulos.
-
-d)Seleccionar todos los títulos en español y en todos los títulos en inglés.
-
-e)Seleccionar todos los libros publicados en inglés en el año 1969.
-
+//autor|//titulo
+d)Seleccionar todos los títulos en español.
+//titulo[@idioma="es"]
+e)Seleccionar todos los libros publicados en español en el año 1969.
+//libro[titulo/@idioma="es" and fechaPublicacion/@año=1969]
 f)Seleccione todos los títulos de los libros publicados en 1973.
-
-g)Obtener el texto de todos los autores (sin marcas) que publiquen después de 1960 en inglés.
+//libro/titulo[//fechaPublicacion/@año=1973]
+g)Obtener el texto de todos los autores (sin marcas) que publiquen después de 1960 en español.
+//autor[//fechaPublicacion/@año>1960 and //titulo/@idioma="es"]/string()
 
 a)Obtener el año de publicación de un libro escrito en español.
-
+//libro[titulo/@idioma="es"]/fechaPublicacion/@año
 b)Obtener todos los títulos de libros publicados en el mismo año que el libro con titlte “La vida está en otra parte”
-
+/biblioteca/libro[fechaPublicacion/@año=/biblioteca/libro[titulo="La vida está en otra parte"]/fechaPublicacion/@año]/titulo
 c)Obtener todos los títulos de libros con el mismo autor que el libro “Conversación en la catedral”
-
+/biblioteca/libro[autor=/biblioteca/libro[titulo="Conversación en la catedral"]/autor]/titulo

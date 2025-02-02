@@ -13,9 +13,9 @@ y varias veces. -->
 <!DOCTYPE alumnos [
     <!ELEMENT alumnos (alumno+)>
     <!ELEMENT alumno (nombre, apellidos,domicilio,telefono+,observacion?,nota?)>
-        <!ATTLIST alumno cod-alumno ID>
-        <!ATTLIST alumno cod-familiar IDREFS>
-        <!ATTLIST alumno becado (si|no)>
+        <!ATTLIST alumno cod-alumno ID #REQUIRED>
+        <!ATTLIST alumno cod-familiar IDREFS #REQUIRED>
+        <!ATTLIST alumno becado (si|no) #REQUIRED>
     <!ELEMENT nombre (#PCDATA)>
     <!ELEMENT apellidos (#PCDATA)>
     <!ELEMENT domicilio (#PCDATA)>
@@ -29,7 +29,7 @@ y varias veces. -->
 ]>
 
 <alumnos>
-    <alumno cod-alumno="1" cod_familiar="2" becado="si">
+    <alumno cod-alumno="1" cod-familiar="2" becado="si">
       <nombre>Mari</nombre>
       <apellidos>Salar Garcia</apellidos>
       <domicilio>Fortuna</domicilio>
@@ -41,7 +41,7 @@ y varias veces. -->
         <calificación>10</calificación>
       </nota>
     </alumno>
-        <alumno cod-alumno="2" cod_familiar="1" becado="no">
+        <alumno cod-alumno="2" cod-familiar="1" becado="no">
       <nombre>Miki</nombre>
       <apellidos>Alonso</apellidos>
       <domicilio>Fortuna</domicilio>
