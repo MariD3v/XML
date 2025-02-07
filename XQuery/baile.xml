@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bailes>
+<baile id="1">
+<nombre>Tango</nombre>
+<precio cuota="mensual" moneda="euro">27</precio>
+<plazas>20</plazas>
+<comienzo>1/1/2011</comienzo>
+<fin>1/12/2011</fin>
+<profesor>Roberto Garcia</profesor>
+<sala>1</sala>
+</baile>
+<baile id="2">
+<nombre>Cha-cha-cha</nombre>
+<precio cuota="trimestral" moneda="euro">80</precio>
+<plazas>18</plazas>
+<comienzo>1/2/2011</comienzo>
+<fin>31/7/2011</fin>
+<profesor>Miriam Gutierrez</profesor>
+<sala>1</sala>
+</baile>
+<baile id="3">
+<nombre>Rock</nombre>
+<precio cuota="mensual" moneda="euro">30</precio>
+<plazas>15</plazas>
+<comienzo>1/3/2011</comienzo>
+<fin>1/12/2011</fin>
+<profesor>Laura Mendiola</profesor>
+<sala>1</sala>
+</baile>
+<baile id="4">
+<nombre>Merengue</nombre>
+<precio cuota="trimestral" moneda="dolares">75</precio>
+<plazas>12</plazas>
+<comienzo>1/1/2011</comienzo>
+<fin>1/12/2011</fin>
+<profesor>Jesus Lozano</profesor>
+<sala>2</sala>
+</baile>
+<baile id="5">
+<nombre>Salsa</nombre>
+<precio cuota="mensual" moneda="euro">32</precio>
+<plazas>10</plazas>
+<comienzo>1/5/2011</comienzo>
+<fin>1/12/2011</fin>
+<profesor>Jesus Lozano</profesor>
+<sala>2</sala>
+</baile>
+<baile id="6">
+<nombre>Pasodoble</nombre>
+<precio cuota="anual" moneda="euro">320</precio>
+<plazas>8</plazas>
+<comienzo>1/1/2011</comienzo>
+<fin>31/12/2011</fin>
+<profesor>Miriam Gutierrez</profesor>
+<sala>1</sala>
+</baile>
+</bailes>
+
+1- Muestra la fecha de comienzo del baile con id = 4
+for $bai in /Bailes/baile
+where $bai/@id=4
+return $bai/comienzo
+2- Muestra el nombre y el profesor de cada baile.
+for $bai in /Bailes/baile
+return ($bai/nombre,$bai/profesor)
+3- Muestra el profesor y el nombre de cada baile ordenados por el nombre del profesor y por el del baile.
+for $bai in /Bailes/baile
+order by $bai/profesor, $bai/nombre
+return ($bai/profesor, $bai/nombre)
+4- Muestra el nombre y el profesor de cada baile ordenados descendentemente por el nombre del baile
+for $bai in /Bailes/baile
+order by $bai/nombre descending
+return ($bai/nombre,$bai/profesor)
+5- Muestra los profesores que se llamen Roberto
+for $baile in //Bailes/baile
+where contains($baile/profesor,"Roberto")
+return $baile/profesor
+6- ¿Cuántos bailes se realizan en la sala número 1?
+for $bailes in //Bailes
+return count($bailes/baile[sala = 1])
+7- Calcula la media de plazas de todos los bailes
+for $bailes in //Bailes
+return avg($bailes/baile/plazas)
+8- ¿Qué bailes tienen más plazas que la media de plazas de todos los bailes?
+for $baile in //baile
+let $media := avg(//baile/plazas) where
+$baile/plazas > $media
+return ($baile/nombre,$baile/plazas)
+9- Mostrar cada uno de los nombres de los bailes con la etiqueta "losbailes".
+for $baile in //baile
+return 
+<losbailes>
+{$baile/nombre}
+</losbailes>
+10- Mostrar los nombres de los bailes seguidos con el número de plazas entre paréntesis, ambos dentro de la misma etiqueta "losbailes".
+for $baile in //baile
+return 
+<losbailes>
+{concat($baile/nombre,"(",$baile/plazas,")")}
+</losbailes>
+11- Mostrar los nombres de los bailes cuyo precio sea mayor de 30.
+for $baile in //baile
+where $baile/precio >30
+return $baile/nombre
+12- Mostrar los nombres de los bailes cuyo precio sea mayor de 30 y la moneda "euro".
+for $baile in //baile
+where $baile/precio >30 and $baile/precio/@moneda="euro"
+return $baile/nombre
+13- Mostrar los nombres y la fecha de comienzo de los bailes que comiencen el mes de enero (utiliza para buscarlo la cadena de texto "/1/").
+for $baile in //baile
+where contains($baile/comienzo, "/1/")
+return ($baile/nombre, $baile/comienzo)
+14- Mostrar los nombres de los profesores y la sala en la que dan clase, ordénalos por sala.
+for $baile in //baile
+order by $baile/sala
+return ($baile/profesor,$baile/sala)
+15- Mostrar los nombres de los profesores eliminando los repetidos y acampañar cada nombre con todas las salas en la que da clase, ordénalos por nombre.
+for $profesor in distinct-values(//baile/profesor)
+let $sala := //baile[profesor=$profesor]/sala
+order by $profesor
+return ($profesor,$sala)
+16- Mostrar la media de los precios de todos los bailes.
+for $precio in avg(//baile/precio)
+return $precio
+17- Mostrar la suma de los precios de los bailes de la sala 1.
+for $precio in sum(/bailes/baile[sala=1]/precio)
+return $precio
+18- Mostrar cuántas plazas en total oferta el profesor "Jesus Lozano".
+for $plazas in sum(//baile[profesor = "Jesus Lozano"]/plazas)
+return $plazas
+19- Mostrar el dinero que ganaría la profesora "Laura Mendiola" si se completaran todas las plazas de su baile, sabiendo que sólo tiene un baile.
+for $baile in (//baile[profesor = "Laura Mendiola"])
+let $dinero := $baile/plazas*$baile/precio
+return $dinero
+20- Mostrar el dinero que ganaría el profesor "Jesus Lozano" si se completaran todas las plazas de su baile, pero mostrando el beneficio de cada baile por separado.
+for $baile in (//baile[profesor = "Jesus Lozano"])
+let $dinero := $baile/plazas*$baile/precio
+return $dinero
+21- Mostrar el dinero que ganaría la profesora "Laura" (no conocemos su apellido) si se completaran todas las plazas de su baile.
+for $baile in (//baile[starts-with(profesor,"Laura")])
+let $dinero := $baile/plazas*$baile/precio
+return $dinero
+22- Mostrar el nombre del baile, su precio y el precio con un descuento del 15% para familias numerosas. Ordenar por el nombre del baile
+for $baile in (//baile)
+order by $baile/nombre
+return ($baile/nombre,$baile/precio,$baile/precio - $baile/precio*0.15)
+23- Mostrar todos los datos de cada baile excepto la fecha de comienzo y de fin.
+for $baile in (//baile)
+return $baile/* except $baile/comienzo except $baile/fin
+24- Mostrar en una tabla de HTML los nombres de los bailes y su profesor, cada uno en una fila.
+for $baile in (//baile)
+return
+<table>
+	<tr>
+		<td>{$baile/nombre}</td>
+	</tr>
+	<tr>
+		<td>{$baile/profesor}</td>
+	</tr>
+</table>

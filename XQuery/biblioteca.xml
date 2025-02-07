@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bookstore>
+    <book category="COOKING">
+        <title lang="en">Everyday Italian</title>
+        <author>Giada De Laurentiis</author>
+        <year>2005</year>
+        <price>30.00</price>
+    </book>
+    <book category="CHILDREN">
+        <title lang="en">Harry Potter</title>
+        <author>J K. Rowling</author>
+        <year>2005</year>
+        <price>29.99</price>
+    </book>
+    <book category="WEB">
+        <title lang="en">XQuery Kick Start</title>
+        <author>James McGovern</author>
+        <author>Per Bothner</author>
+        <author>Kurt Cagle</author>
+        <author>James Linn</author>
+        <author>Vaidyanathan Nagarajan</author>
+        <year>2003</year>
+        <price>49.99</price>
+    </book>
+    <book category="WEB">
+        <title lang="en">Learning XML</title>
+        <author>Erik T. Ray</author>
+        <year>2003</year>
+        <price>39.95</price>
+    </book>
+</bookstore>
+
+1. Mostrar los títulos de los libros con la etiqueta "titulo".
+for $book in /bookstore/book
+return $book/title
+2. Mostrar loslibros cuyo precio sea menor o igual a 30. Primero incluyendo la condición en la cláusula "where" y luego en la ruta del XPath.
+for $book in /bookstore/book[price <=30]
+return $book/title
+3. Mostrar sólo el título de los libros cuyo precio sea menor o igual a 30.
+for $book in /bookstore/book
+where $book/price <=30
+return $book/title
+4. Mostrar sólo el título sin atributos de los libros cuyo precio sea menor o igual a 30.
+for $book in /bookstore/book
+where $book/price <=30
+return $book/title/string()
+5. Mostrar el título y el autor de los libros del año 2005, y etiquetar cada uno de ellos con "lib2005".
+for $book in /bookstore/book
+where $book/year = 2005
+return <lib2005>{$book/title,$book/author}</lib2005>
+6. Mostrar los años de publicación, primero con "for" y luego con "let" para comprobar la diferencia entre ellos. Etiquetar la salida con "publicacion".
+for $book in /bookstore/book
+return <publicacion>{$book/year}</publicacion>
+let $book := /bookstore/book
+return <publicacion>{$book/year}</publicacion>
+7. Mostrar los libros ordenados primero por "category" y luego por "title" en una sola consulta.
+for $book in /bookstore/book
+order by $book/@category,$book/title 
+return $book
+8. Mostrar cuántos libros hay, y etiquetarlo con "total".
+for $numero in count(/bookstore/book)
+return <total>{$numero}</total>
+9. Mostrar los títulos de los libros y al final una etiqueta con el número total de libros.
+let $book :=/bookstore/book
+let $numero:= count(/bookstore/book)
+return <libro>{$book}<total>{$numero}</total></libro>
+10. Mostrar el precio mínimo y máximo de los libros.
+let $pMax :=max(/bookstore/book/price)
+let $pMin := min(/bookstore/book/price)
+return ($pMax,$pMin)
+11. Mostrar el título del libro,su precio y su precio con el IVA incluido, cada uno con su propia etiqueta. Ordénalos por precio con IVA.
+for $book in /bookstore/book
+order by $book/price*1.21
+return ($book/title,$book/price,<precioIVA>{$book/price*1.21}</precioIVA>)
+12. Mostrar la suma total de los precios de los libros con la etiqueta "total".
+for $book in sum(/bookstore/book/price)
+return <total>{$book}</total>
+13. Mostrar cada uno de los precios de los libros, y al final una nueva etiqueta con la suma de los precios.
+let $book :=/bookstore/book
+let $numero:= sum(/bookstore/book/price)
+return <libro><libros>{$book/price}</libros><total>{$numero}</total></libro>
+14. Mostrar el título y el número de autores que tiene cada título en etiquetas diferentes.
+for $book in /bookstore/book
+for $numero in count($book/author)
+return 
+<libro>
+	{$book/title}
+	<totalAutores>{$numero}</totalAutores>
+</libro>
+15. Mostrar en la misma etiqueta el título y entre paréntesis el número de autores que tiene ese título.
+for $book in /bookstore/book
+return 
+<libro>
+	{concat($book/title,"(",count($book/author),")")}
+</libro>
+16. Mostrar los libros escritos en años que terminen en "3".
+for $book in /bookstore/book
+where ends-with($book/year,"3")
+return $book
+17. Mostrar los libros cuya categoría empiece por "C".
+for $book in /bookstore/book
+where starts-with($book/@category,"C")
+return $book
+18. Mostrar los libros que tengan una "X" mayúscula o minúscula en el título.
+for $book in /bookstore/book
+where contains($book/@category,"C")
+return $book
+19. Mostrar el título y el número de caracteres que tiene cada título, cada uno con su propia etiqueta.
+for $book in /bookstore/book
+return 
+<libro>{$book/title}
+<numero>{string-length($book/title)}</numero>
+</libro>
+20. Mostrar todos los años en los que se ha publicado un libro eliminando los repetidos. Etiquétalos con "año".
+for $year in distinct-values(/bookstore/book/year)
+return <año>{$year}</año>
+21. Mostrar todos los autores eliminando los que se repiten y ordenados por el número de caracteres que tiene cada autor.
+for $author in distinct-values(/bookstore/book/author)
+order by string-length($author)
+return $author
+22. Conseguir a todos los autores que tienen un libro en la categoría INFANTIL.
+for $book in /bookstore/book
+where $book/@category = "CHILDREN"
+return $book/author
+23. Seleccionar todos los títulos publicados en la categoría WEB o COCINA.
+for $book in /bookstore/book
+where $book/@category ="WEB" or $book/@category ="COOKING"
+return $book
+24. Obtener el idioma de los libros de la categoría WEB.
+for $book in /bookstore/book
+where $book/@category ="WEB"
+return $book/title/@lang
+25. Investiga cómo conseguir todos los precios diferentes.
+for $precio in distinct-values(/bookstore/book/price)
+return $precio
+26. Obtenga todos los libros de la misma categoría que el libro «Aprender XML».
+let $categoriaLibro := /bookstore/book[title="Learning XML"]/@category
+for $book in /bookstore/book
+where $book/@category = $categoriaLibro
+return $book
