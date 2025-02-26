@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="file:/G:/Mi%20unidad/IES%20GOYA-24-25/LENGUAJE%20DE%20MARCAS/UT5-XSLT/Ejercicios/ventas.xsl"?>
+<ventas>
+  <categoria>
+    <nombre>Electrónica</nombre>
+    <venta>1500</venta>
+  </categoria>
+  <categoria>
+    <nombre>Ropa</nombre>
+    <venta>800</venta>
+  </categoria>
+  <categoria>
+    <nombre>Libros</nombre>
+    <venta>1200</venta>
+  </categoria>
+</ventas>

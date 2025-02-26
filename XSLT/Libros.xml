@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="file:/E:/WorkSpace/XML/XSLT/Libros.xsl"?>
+<catalogo>
+	<libro>
+		<titulo>Elprincipito</titulo>
+		<autor>AntoinedeSaint-Exupéry</autor>
+		<precio>12.99</precio>
+	</libro>
+	<libro>
+		<titulo>Cienañosdesoledad</titulo>
+		<autor>GabrielGarcíaMárquez</autor>
+		<precio>18.50</precio>
+	</libro>
+	<libro>
+		<titulo>1984</titulo>
+		<autor>GeorgeOrwell</autor>
+		<precio>15.00</precio>
+	</libro>
+</catalogo>
